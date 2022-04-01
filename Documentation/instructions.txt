@@ -1,0 +1,11 @@
+Version 1.0.0
+
+requisitos:
+    tener python 3.6+
+    pip install pillow
+
+- hacer doble click en el archivo main.py
+- seleccionar la herramienta deseada en la barra lateral
+
+funciones:
+    Ctrl+b: desplegar la barra lateral para ver los nombres de las herramientas y otros detalles

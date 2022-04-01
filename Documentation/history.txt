@@ -1,0 +1,47 @@
+==> TITULO PENDIENTE <==
+La idea de esta herramienta es tener un asistente para realizar tareas en la universidad, de momento esta
+orientada a termodinamica, pero se expandira a todas las materias posibles, asi cualquier estudiante de 
+ingenieria tendra una herramienta comoda para asistirle cuando un profesor no pueda.
+
+Podria describir sus funciones de la siguiente manera:
+- Resolucion de problemas
+- Creacion de tareas, sera mas facil e intuitivo usar formulas y procedimientos
+- Creacion de procedimiento, el estudiante introducira los datos que tenga de un
+  problema y el programa dara detalladamente los pasos para resolverlo, asi tendra
+  una respuesta correcta y podra consultar como se hizo
+- Compilara herramientas como: graficas, calculadora, tablas de datos
+
+- 26/03/22:
+    * Empiezo con la base principal que consiste de una ventana, de momento es hacer una ventana mas moderna pero
+    la funcionabilidad es lo principal de momento. (11:43am)
+
+    * La interfaz grafica esta en sus primeros pasos, crear una ventana moderna en Tkinter es un martirio, pero la
+    facilidad de crear lo demas y unir con python sin 'signals and slots' es lo que me mantiene con esta libreria,
+    en el peor de los casos puedo cambiar a QML, donde tengo una gran libertad grafica pero mayor complejidad de
+    calculos. Tambien hice una version primitiva de mi logo personal, los colores de la interfaz intenta emular los 
+    del logo de la facultad de ingenieria. Queda pendiente hacer las herramientas y un sistema donde pueda seleccionar
+    la herramienta con un boton desde la barra lateral. (11:39pm)
+  
+- 27/03/22:
+    * Aunque la interfaz casi no sufrio cambio la estructura interna fue cambiada para ser dinamica (9:12am)
+    * Ahora la barra lateral tiene botones que manda llamar al modulo correspondiente
+    * Ahora la ventana principal consta de paginas, cada pagina tendra una herramienta
+    * cuando se agrega un frame a la ventana automaticamente se genera el boton para llamarla
+    * se desecho la idea de una ventana moderna, se usara el window manager por defecto
+    * empiezo a documentar el codigo, asi cualquier persona puede editarlo si gusta (9:10pm)
+    * termino de documentar el codigo e inicio a utilizar GIT para el manejo de versiones (11:07pm)
+
+- 30/03/22:
+    * Varios cambios hechos en los ultimos 2 dias han sido revertidos, surgio una idea que no considere y necesito
+	refactorizar todo el codigo para lograrlo, asi que volvi a la version del 27/03/22
+
+- 31/03/22:
+    * La barra lateral ya consiste de 3 barras, para: materias, temas y modulos. Ya tiene una animacion suave.
+    Debo trabajar en los colores y el cargar los modulos (9:30am)
+    * Hice una herramienta para añadir mis propias curvas de animacion, se llaman Curvas de Bezier (1:32pm)
+    * La herramienta y las curvas ya funcionan perfectamente, es cuestion de hallar una buena curva (2:29pm)
+    * Trabajo en la pagina principal, donde vendra informacion, actualizaciones, creditos, etc... (6:27pm)
+    * Termino la pagina principal, puede estar sujeta a cambios, pero la estructura principal ya esta (9:50pm)
+    * Nuevo sistema de organizacion para los modulos (10:30pm)
+    * Las clases ya se cargan correctamente, ya no hay errores de importacion y la ventana va fluida
+    * Se arreglaron varios errores visuales (10:52pm)
