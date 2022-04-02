@@ -30,22 +30,6 @@ class Container(Frame):
         frame = self.frames[cont]                   # obtenemos el marco que queremos
         frame.grid(row=0, column=0, sticky='nsew')  # colocamos el marco en el contenedor
         frame.tkraise()                             # mostramos el marco
-    
-    def load_modules(self, modules):
-        for module in modules:
-            self.load_module(self, module)
-    
-    def load_module(self, module):
-        new_course = module(self.course_frame.main_frame)
-        IconButton(
-            self.course_frame.main_frame,
-            new_course.image,
-            new_course.name,
-            width=self.bar_width[0],
-            height=50
-        ).grid(row=self.courses, column=0)
-        self.subject_frame.load_buttons(new_course.subjects)
-        self.courses += 1
 
 class Photo(Label):
     """
@@ -165,10 +149,9 @@ class LeftBar(Frame):
         self.bar_width = (175, 175, 175)
         self.toggled = False
         self.on_animation = False
-        self.courses = 0
 
         ##### STYLE #####
-        self.time = 10
+        self.time = 1
         control_points = [
             (0, 0),
             (1, 0),
@@ -191,18 +174,18 @@ class LeftBar(Frame):
         self.module_frame.place(x=sum(self.bar_width[:2]), y=0, relheight=1)
     
     def load_courses(self, courses):
-        for course in courses:
-            self.load_course(course())
+        for i, course in enumerate(courses):
+            self.load_course(course(), i)
     
-    def load_course(self, course):
+    def load_course(self, course, index):
         IconButton(
             self.course_frame.main_frame,
             course.image,
             course.name,
             width=self.bar_width[0],
-            height=50
-        ).grid(row=self.courses, column=0)
-        self.courses += 1
+            height=50,
+            command=lambda: self.subject_frame.show_frame(index)
+        ).grid(row=index, column=0)
     
     def toggle(self, event):
         if self.on_animation: return

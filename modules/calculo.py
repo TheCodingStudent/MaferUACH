@@ -1,5 +1,22 @@
-class Calculo:
+from modules.common import Base
+
+class Calculo(Base):
     def __init__(self):
-        self.image = 'images/left.png'
-        self.name = 'Calculo'
-        self.subjects = []
+        modules = [
+            Diferencial,
+            Integral,
+            Vectorial
+        ]
+        super().__init__('images/left.png', 'Fisica', modules)
+
+class Diferencial(Base):
+    def __init__(self):
+        super().__init__('images/left.png', 'Diferencial')
+
+class Integral(Base):
+    def __init__(self):
+        super().__init__('images/left.png', 'Integral')
+
+class Vectorial(Base):
+    def __init__(self):
+        super().__init__('images/left.png', 'Vectorial')

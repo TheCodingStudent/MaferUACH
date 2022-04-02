@@ -1,5 +1,17 @@
-class Quimica:
+from modules.common import Base
+
+class Quimica(Base):
     def __init__(self):
-        self.image = 'images/left.png'
-        self.name = 'Quimica'
-        self.subjects = []
+        modules = [
+            Organica,
+            Inorganica
+        ]
+        super().__init__('images/left.png', 'Quimica', modules)
+
+class Organica(Base):
+    def __init__(self):
+        super().__init__('images/left.png', 'Organica')
+
+class Inorganica(Base):
+    def __init__(self):
+        super().__init__('images/left.png', 'Inorganica')

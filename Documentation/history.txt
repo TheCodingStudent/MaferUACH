@@ -45,3 +45,20 @@ Podria describir sus funciones de la siguiente manera:
     * Nuevo sistema de organizacion para los modulos (10:30pm)
     * Las clases ya se cargan correctamente, ya no hay errores de importacion y la ventana va fluida
     * Se arreglaron varios errores visuales (10:52pm)
+    * Surgio un conflicto con GIT y casi me muero del susto, ya esta arreglado pero perdi las versiones que habia
+    subido en la semana, ya esta subida la version del dia de hoy y aparte le envie a Demian, Javier y Miriam esta
+    misma version, por que al parecer soy demasiado nuevo en GIT
+    * Queda pendiente comentar el codigo y añadir el docstring pero ya es muy tarde para eso y el susto de casi perder
+    el proyecto por segunda vez aun no se me pasa, tiemblo al escribir esto. (11:32pm)
+
+- 01/04/22:
+    * Empiezo a optimizar la forma de cargar modulos, en lugar de cargar botones y mas botones puedo hacer que se carguen
+    los frames directamente de la clase. Le sigo despues de hacer tarea (9:12am)
+    * Empiezo a utilizar el sistema de ramas de GIT, asi se mantendra una rama principal que sera sin fallas y trabajare
+    en la rama desarrollo, esto permitira evitar lo de anoche
+
+- 02/04/22:
+    * Ayer me quede muerto despues del gimnasio. Hoy empiezo a cargar todos los modulos (10:27am)
+    * El sistema funcionaba hasta que me tope con que no podia cargar las funciones de los botones sin meterme
+    en un complejo sistema recursivo. Asi que debo crear todo en una misma funcion. Me ire a acostar para pensar
+    en una idea mejor, puede que no programe mas hoy, termine la tarea de fisica y la de tecnologias. (4:21pm)
