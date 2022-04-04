@@ -29,23 +29,37 @@ class Window(Tk):
         self.iconbitmap("images/uach.ico")                                  # y un icono
 
         ##### COMPONENTES #####
-        self.left_bar = LeftBar(self, width=50)
-        self.left_bar.pack(side='left', fill='y')
-        self.left_bar.load_courses(all_courses)
+        self.bottom_bar = Frame(self, height=25, bg='#651fff')  # creamos la barra inferior, para poner informacion variada
+        self.bottom_bar.pack(side='bottom', fill='x')           # la ponemos abajo y que ocupe todo el ancho
+        config = {                                              # esta sera la configuracion para el texto de la barra inferior
+            'bg': self.bottom_bar['bg'],                        # el fondo del texto sera el mismo que de la barra
+            'fg': "#ede7f6",                                    # el color de texto sera un blanco con morado
+            'font': 'Arial 8 bold'                              # fuente arial 8 negrita
+        }
+        self.creator = Label(self.bottom_bar, text='Ing.Armando Chaparro', **config)    # creamos la etiqueta para el creador. Debo darme credito a mi mismo 🤣
+        self.creator.place(relx=1, rely=1, anchor='se')                                 # lo colocamos hasta la derecha
+
+        self.left_bar = LeftBar(self, width=50)     # esta sera la barra lateral, donde se escogeran las herramientas
+        self.left_bar.pack(side='left', fill='y')   # la ponemos a la izquierda y que ocupe todo el alto
 
         self.container = Container(self, bg='#ede7f6')              # creamos el contenedor de modulos
         self.container.pack(side='top', expand=True, fill='both')   # lo colocamos y hacemos que se expanda para cubrir la ventana
+
+        self.left_bar.load_courses(all_courses)         # cargamos todos los modulos
         
-        self.main_frame = Main(self.container)
-        self.container.frames.append(self.main_frame)
-        self.container.show_frame(0)
+        self.main_frame = Main(self.container)          # cargamos la ventana de presentacion, ahi vendran creditos, logos, mensajes, etc...
+        self.container.frames.append(self.main_frame)   # lo agregamos al contenedor de la aplicacion
+        self.container.show_frame(-1)                   # hacemos que muestre la pagina principal (-1 por que es la ultima agregada)
 
         ##### CONEXIONES #####
         self.bind('<Control-b>', self.left_bar.toggle)
     
     ##### FUNCIONES #####
-    def add_pages(self, *pages):
-        self.container.add_frames(*pages)
+    def add_frame(self, frame):
+        """
+        Permite añadir marcos al contenedor de la aplicacion.
+        """
+        self.container.frames.append(frame)
 
 ##### CREAMOS VENTANA #####
 window = Window(1000, 700)

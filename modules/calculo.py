@@ -7,7 +7,7 @@ class Calculo(Base):
             Integral,
             Vectorial
         ]
-        super().__init__('images/left.png', 'Fisica', modules)
+        super().__init__('images/left.png', 'Calculo', modules)
 
 class Diferencial(Base):
     def __init__(self):

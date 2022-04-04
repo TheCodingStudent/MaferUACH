@@ -1,4 +1,4 @@
-from modules.common import Base
+from modules.common import Base, Module
 
 class Fisica(Base):
     def __init__(self):
@@ -16,15 +16,13 @@ class Termodinamica(Base):
         ]
         super().__init__('images/left.png', 'Termodinamica', modules)
 
-class Arquimides:
+class Arquimides(Module):
     def __init__(self):
-        self.image = 'images/left.png'
-        self.name = 'Principio de Arquimides'
+        super().__init__('images/left.png', 'Arquimides')
 
-class Dilatacion:
+class Dilatacion(Module):
     def __init__(self):
-        self.image = 'images/left.png'
-        self.name = 'Dilatacion Termica'
+        super().__init__('images/left.png', 'Dilatacion')
 
 class Cinematica(Base):
     def __init__(self):

@@ -62,3 +62,17 @@ Podria describir sus funciones de la siguiente manera:
     * El sistema funcionaba hasta que me tope con que no podia cargar las funciones de los botones sin meterme
     en un complejo sistema recursivo. Asi que debo crear todo en una misma funcion. Me ire a acostar para pensar
     en una idea mejor, puede que no programe mas hoy, termine la tarea de fisica y la de tecnologias. (4:21pm)
+
+- 03/04/22:
+    * Busco alternativas para hacer un mejor diseño de la interfaz, ya sea otra libreria u otro lenguaje de programacion,
+    de momento instalen C# pero no encontre un tutorial que explicara sin usar una herramienta para visualizar, la otra alternativa
+    es QML, es engorroso pero ya he hecho una interfaz elegante con QML, la conexion entre QML y python no es agradable pero
+    podria hacerlo funcionar si fuera mi ultima opcion. Otra opcion seria en lugar de tener una barra lateral cambiar por un 
+    menu convencional. (3:30pm).
+    * El sistema de modulos ya funciona, carga las clases, los temas y los modulos correctamente, se cambio un poco el sistema
+    de contenedores para que no produjera errores visuales. Comienzo a documentar todo hasta el momento para guardar la version
+    en GIT. (4:16pm)
+    * Documentar es la parte mas aburrida del proceso, pero es necesario para que principalmente yo no olvide a largo plazo que
+    hace cada cosa, pero tambien servira para cualquier futuro colaborador. Llevo aproximadamente el 30% de documentacion
+    pendiente. (5:09pm)
+    * Termine de documentar las nuevas clases y funciones. (6:01pm)
