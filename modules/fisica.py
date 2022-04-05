@@ -1,3 +1,4 @@
+from tkinter.ttk import Combobox
 from modules.common import *
 
 class Fisica(Base):
@@ -7,12 +8,12 @@ class Fisica(Base):
 
 class Termodinamica(Base):
     def __init__(self):
-        modules = [Arquimides, Dilatacion]
+        modules = [Arquimedes, Dilatacion]
         super().__init__('images/left.png', 'Termodinámica', modules)
 
-class Arquimides(Module):
+class Arquimedes(Module):
     def __init__(self):
-        super().__init__('images/left.png', 'Arquímides', 'Principio de Arquímides')
+        super().__init__('images/left.png', 'Arquímedes', 'Principio de Arquímedes')
     
     def main_frame(self, master):
         frame = Frame(master, bg=master['bg'])
@@ -25,22 +26,7 @@ class Arquimides(Module):
             ('Volumen (v):', 'm3'),
             ('Densidad del material (ρmat):', 'Kg/m3')
         ]
-        text_config = {
-            'bg': master['bg'],
-            'fg': '#311b92',
-            'font': 'Arial 12'
-        }
-        entry_config = {
-            'bg': 'white',
-            'fg': 'black',
-            'selectbackground': '#651fff',
-            'selectforeground': '#ede7f6',
-            'relief': 'flat',
-            'width': 20,
-            'font': 'Arial 12'
-        }
         self.entries = EntryFrame(frame, entries, padx=10, pady=10)
-        self.entries.style(text_config, entry_config)
         self.entries.pack(side='top', expand=True)
 
         buttons = [
@@ -52,7 +38,6 @@ class Arquimides(Module):
             'bg': '#b39ddb'
         }
         self.buttons = ButtonFrame(self.entries, buttons)
-        self.buttons.style(button_config)
         self.buttons.grid(row=7, column=1)
         return frame
     
@@ -65,7 +50,7 @@ class Arquimides(Module):
         header_frame = self.header(frame)
         header_frame.pack(side='top', fill='x')
         main_frame = self.main_frame(frame)
-        main_frame.pack(side='top', expand=True, fill='both')
+        main_frame.pack(side='top', expand=True)
         bottom_frame = self.bottom_frame(frame)
         bottom_frame.pack(side='top', expand=True, fill='both')
         if event:
@@ -103,6 +88,66 @@ class Arquimides(Module):
 class Dilatacion(Module):
     def __init__(self):
         super().__init__('images/left.png', 'Dilatación')
+    
+    def main_frame(self, master):
+        frame = Frame(master, bg=master['bg'])
+        entries = [
+            ('Dimensión inicial', ''),
+            ('Dimensión final', ''),
+            ('Diferencia de dimensión', ''),
+            ('Temperatura inicial', '°C'),
+            ('Temperatura final', '°C'),
+            ('Diferencia de temperatura', '°C'),
+            ('Coeficiente', '°C-1')
+        ]
+        self.entries = EntryFrame(frame, entries, padx=10, pady=10)
+        self.entries.pack(side='top', expand=True)
+
+        self.unit = Combobox(self.entries, width=25)
+        self.unit['values'] = (
+            'Lineal',
+            'Superficial',
+            'Volumétrico'
+        )
+        self.unit.current(0)
+        self.unit.grid(row=7, column=1)
+
+        buttons = [
+            [('Limpiar...', self.entries.clear), ('Calcular...', lambda: self.calculate(self.entries.get_values()))]
+        ]
+        button_config = {
+            'width': 100,
+            'height': 20,
+            'bg': '#b39ddb'
+        }
+        self.buttons = ButtonFrame(self.entries, buttons, width=100, height=20)
+        self.buttons.grid(row=8, column=1, pady=10)
+        return frame
+    
+    def bottom_frame(self, master):
+        frame = Frame(master, bg='red')
+        return frame
+    
+    def load(self, master, event=None, func=None):
+        frame = Frame(master, bg=master['bg'])
+        header_frame = self.header(frame)
+        header_frame.pack(side='top', fill='x')
+        main_frame = self.main_frame(frame)
+        main_frame.pack(side='top', expand=True, fill='both')
+        bottom_frame = self.bottom_frame(frame)
+        bottom_frame.pack(side='top', expand=True, fill='both')
+        if event:
+            header_frame.bind(event, func)
+            main_frame.bind(event, func)
+            bottom_frame.bind(event, func)
+        return frame
+    
+    def calculate(self, values):
+        diminicial, dimfinal, dimdif, tempinicial, tempfinal, tempdif, tipocoef = values
+        
+        new_values = []
+        if new_values != values: self.calculate(new_values.copy())
+        else: self.entries.insert(new_values)
 
 class Cinematica(Base):
     def __init__(self):

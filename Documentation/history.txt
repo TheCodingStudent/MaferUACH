@@ -78,11 +78,11 @@ Podria describir sus funciones de la siguiente manera:
     * Termine de documentar las nuevas clases y funciones. (6:01pm)
     * Arregle un error visual. (7:46pm)
     * El sistema de modulos ya carga correctamente lo que corresponde, el problema era que cada materia que se cargaba no tenia en 
-    cuenta las materias anteriores y se reiniciaba. Empiezo a reconstruir el modulo de Arquimides. (9:23pm)
+    cuenta las materias anteriores y se reiniciaba. Empiezo a reconstruir el modulo de Arquimedes. (9:23pm)
 
 - 04/04/22:
-    * Continuo creando el modulo de Arquimides y agregando funciones utiles. (4:51pm)
-    * El modulo de Arquimides funciona de momento, tambien añadi un sistema de estilos, esto me permitira de manera sencilla
+    * Continuo creando el modulo de Arquimedes y agregando funciones utiles. (4:51pm)
+    * El modulo de Arquimedes funciona de momento, tambien añadi un sistema de estilos, esto me permitira de manera sencilla
     cambiar los colores de los modulos, este sistema unicamente esta en "modules.common", ya que los estilos solo se usaran 
     para los modulos. Planteo la idea de tener un json con el tema, asi se cambiara en todos lados. (6:15pm)
 
@@ -95,3 +95,11 @@ Podria describir sus funciones de la siguiente manera:
         6.- La barra lateral puede activarse y desactivarse eternamente
     
     * Ahora la barra se desactiva cuando presionas fuera de ella. (7:06pm)
+
+- 05/04/22:
+    * La parte grafica del modulo de "Dilatacion termica" esta terminada, no me gusta tanto codigo repetido asi que buscare
+    una forma de hacer una plantilla. (7:17am) 
+    * Empiezo con la renovacion de estilo, consistira en tener todos los colores en un archivo JSON y hacer mas facil la 
+    customizacion del programa. (7:28am)
+    * EntryFrame ya cuenta con el sistema de estilos de JSON. (7:43am)
+    * ButtonFrame ya cuenta con el sistema de estilos de JSON. (7:59am)

@@ -1,7 +1,10 @@
 ##### IMPORTAMOS LIBRERIAS Y CLASES #####
 from tkinter import Button, Frame, Label, Entry
 from widgets import Photo
-import utils
+import utils, json
+
+with open('style.json', 'r') as f:
+    data = json.load(f)
 
 class Module:
     """
@@ -26,12 +29,13 @@ class Module:
     
     def header(self, master):
         frame = Frame(master, bg=master['bg'])
-        title_config = {
-            'bg': master['bg'],
-            'fg': '#311b92',
-            'font': 'Arial 24 bold'
-        }
-        Label(frame, text=self.extended_name, **title_config).pack(side='top', fill='x', pady=10)
+        Label(
+            frame, 
+            text=self.extended_name,
+            bg=master['bg'],
+            font=data['big_font'],
+            fg=data['text_color']
+        ).pack(side='top', fill='x', pady=10)
         return frame
 
 class Base:
@@ -51,17 +55,26 @@ class EntryFrame(Frame):
     def __init__(self, master, entries, padx=0, pady=0):
         super().__init__(master, bg=master['bg'])
         self.entries = []
-        self.texts = []
+        text_config = {
+            'bg': master['bg'],
+            'fg': data['text_color'],
+            'font': data['normal_font']
+        }
+        entry_config = {
+            'bg': 'white',
+            'fg': 'black',
+            'selectbackground': data['select_background'],
+            'selectforeground': data['select_foreground'],
+            'relief': 'flat',
+            'width': 20,
+            'font': data['normal_font']
+        }
         for i, (label, unit) in enumerate(entries):
-            name = Label(self, text=label)
-            name.grid(row=i, column=0, sticky='e')
-            self.texts.append(name)
-            entry = Entry(self)
+            Label(self, text=label, **text_config).grid(row=i, column=0, sticky='e')
+            entry = Entry(self, **entry_config)
             entry.grid(row=i, column=1, padx=padx, pady=pady)
             self.entries.append(entry)
-            _unit = Label(self, text=unit)
-            _unit.grid(row=i, column=2, sticky='w')
-            self.texts.append(_unit)
+            Label(self, text=unit, **text_config).grid(row=i, column=2, sticky='w')
     
     def get_values(self):
         values = []
@@ -79,34 +92,36 @@ class EntryFrame(Frame):
             if not value: continue
             self.entries[i].delete(0, 'end')
             self.entries[i].insert(0, str(value))
-    
-    def style(self, text_config={}, entry_config={}):
-        for key, value in text_config.items():
-            for text in self.texts:
-                text[key] = value
-        for key, value in entry_config.items():
-            for entry in self.entries:
-                entry[key] = value
 
 class ButtonFrame(Frame):
-    def __init__(self, master, buttons, padx=0, pady=0):
+    def __init__(self, master, buttons, padx=0, pady=0, width=100, height=20):
         super().__init__(master, bg=master['bg'])
         self.buttons = []
         for i, row in enumerate(buttons):
             for j, (text, command) in enumerate(row):
                 if not command: command = lambda: None
-                button = FlatButton(self, text, command)
+                button = FlatButton(self, text, command, width, height)
                 button.grid(row=i, column=j, padx=padx, pady=pady)
                 self.buttons.append(button)
-        
-    def style(self, config):
-        for button in self.buttons: button.style(config)
 
 class FlatButton(Frame):
-    def __init__(self, master, text, command, frame_config={}):
+    def __init__(self, master, text, command, width, height):
+        frame_config = {
+            'width': width,
+            'height': height,
+            'bg': '#b39ddb'
+        }
         super().__init__(master, **frame_config)
         self.command = command
-        self.text = Label(self, text=text)
+        text_config = {
+            'bg': self['bg'],
+            'fg': data['text_color'],
+            'font': data['normal_font']
+        }
+        self.original_color = self['bg']
+        self.hover_color = data['hover_color']
+        self.click_color = data['click_color']
+        self.text = Label(self, text=text, **text_config)
         self.text.place(relx=0.5, rely=0.5, anchor='center')
         self.was_hovered = False
 
@@ -137,15 +152,3 @@ class FlatButton(Frame):
         self['bg'] = self.click_color
         self.text['bg'] = self.click_color
         self.command()
-
-    def style(self, config):
-        if bg := config.get('bg', None):
-            self['bg'] = self.text['bg'] = self.original_color = bg
-            self.hover_color = utils.opacity(self['bg'], 0.9)
-            self.click_color = utils.opacity(self['bg'], 0.8)
-        if width := config.get('width', None): self['width'] = width
-        if height := config.get('height', None): self['height'] = height
-        if opacity := config.get('opacity', None): self.hover_color = utils.opacity(self.original_color, opacity)
-        if text := config.get('text', None): self.text = Label(self, text=text)
-        if font := config.get('font', None): self.text['font'] = font
-        if fg := config.get('fg', None): self.text['fg'] = fg
