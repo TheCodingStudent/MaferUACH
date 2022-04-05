@@ -76,3 +76,12 @@ Podria describir sus funciones de la siguiente manera:
     hace cada cosa, pero tambien servira para cualquier futuro colaborador. Llevo aproximadamente el 30% de documentacion
     pendiente. (5:09pm)
     * Termine de documentar las nuevas clases y funciones. (6:01pm)
+    * Arregle un error visual. (7:46pm)
+    * El sistema de modulos ya carga correctamente lo que corresponde, el problema era que cada materia que se cargaba no tenia en 
+    cuenta las materias anteriores y se reiniciaba. Empiezo a reconstruir el modulo de Arquimides. (9:23pm)
+
+- 04/04/22:
+    * Continuo creando el modulo de Arquimides y agregando funciones utiles. (4:51pm)
+    * El modulo de Arquimides funciona de momento, tambien añadi un sistema de estilos, esto me permitira de manera sencilla
+    cambiar los colores de los modulos, este sistema unicamente esta en "modules.common", ya que los estilos solo se usaran 
+    para los modulos. Planteo la idea de tener un json con el tema, asi se cambiara en todos lados. (6:15pm)

@@ -5,9 +5,15 @@ def rgb2hex(*rgb):
     return  '#{:02x}{:02x}{:02x}'.format(r, g, b)
 
 def hex_to_rgb(value):
+    if not value.startswith('#'): value = '#ffffff'
     value = value.lstrip('#')
     lv = len(value)
     return tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
+
+def opacity(hex_color, opacity):
+    r, g, b = hex_to_rgb(hex_color)                                              
+    nr, ng, nb = r * opacity, g * opacity, b * opacity    
+    return rgb2hex(nr, ng, nb) 
 
 class Bezier:
     def __init__(self, points, rng, width=1, start=(0, 0)):

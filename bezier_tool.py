@@ -17,15 +17,7 @@ class Point:
         self.pos += Vector2(rel)
 
 CURVE = []
-POINTS = [
-    Point((0, 0)),
-    Point((1000, 0)),
-    Point((800, 1000)),
-    Point((800, 1000)),
-    Point((800, 1000)),
-    Point((1000, 0)),
-    Point((1000, 1000)),
-]
+POINTS = []
 SELECTED = None
 RADIUS = 20
 

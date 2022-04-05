@@ -24,6 +24,7 @@ class Container(Frame):
     
     ##### FUNCIONES #####
     def show_frame(self, cont):                     # esta funcion mostrara el marco que se le indique
+        self.hide_current()                         # ocultar el marco anterior
         self.current = cont                         # actualizamos el numero del marco actual
         frame = self.frames[cont]                   # obtenemos el marco que queremos
         frame.grid(row=0, column=0, sticky='nsew')  # colocamos el marco en el contenedor
@@ -162,17 +163,20 @@ class LeftBar(Frame):
         ##### PROPERTIES #####
         self.master = master                # elemento padre, podremos referenciarlo despues
         self.width = self['width']          # guardamos el ancho minimo de la barra
-        self.bar_width = (160, 160, 160)    # estos son los anchos para cada elemento en la barra
+        self.bar_width = (150, 150, 150)    # estos son los anchos para cada elemento en la barra
         self.toggled = False                # esta propiedad nos dice si la barra esta desplegada o no
         self.on_animation = False           # esta propiedad nos permite saber si la barra se esta contrayendo/desplegando
         self.current_index = None           # este sera el menu que este activo, inicialmente ninguno esta activo
 
+        ##### QUANTITIES #####
+        self.subjects = 0
+        self.modules = 0
+
         ##### STYLE #####
-        self.time = 10      # tiempo que dura la animacion de la barra en completarse (frames)
+        self.time = 3      # tiempo que dura la animacion de la barra en completarse (frames)
         control_points = [  # estos son los puntos de control para crear una curva bezier y darle un efecto elegante a la barra
             (0, 0),
             (1, 0),
-            (2, 0),
             (1, 1)
         ]
         self.curve = utils.Bezier(              # creamos la curva bezier (mas informacion en utils.py)
@@ -250,6 +254,7 @@ class LeftBar(Frame):
         de crear el boton correspondiente.
         """
         self.load(self.subject_frame, subjects, self.load_subject)
+        self.subjects += len(subjects)
     
     def load_modules(self, modules):
         """
@@ -279,10 +284,12 @@ class LeftBar(Frame):
         y lo agrega al marco que debe, aparte carga los modulos que le corresponden
         al tema.
         """
+        offset = self.subjects
         subject_button = self.create_button(frame, subject, self.bar_width[1])  # creamos el boton
-        subject_button.command = lambda: self.module_frame.show_frame(index)    # le asignamos el comando
+        subject_button.command = lambda: self.module_frame.show_frame(offset + index)    # le asignamos el comando
         subject_button.grid(row=index, column=0)                                # lo colocamos en la posicion que corresponde
         self.load_modules(subject.modules)                                      # cargamos los modulos del tema
+        self.modules += len(subject.modules)
     
     def load_module(self, frame, module, index):
         """
@@ -290,8 +297,9 @@ class LeftBar(Frame):
         y lo agrega al marco que debe, ademas agrega el modulo al contenedor de la
         aplicacion para que podamos usarlo posteriormente.
         """
+        offset = self.modules
         module_button = self.create_button(frame, module, self.bar_width[2])    # creamos el boton
-        module_button.command = lambda: self.call_module(index)                 # le asignamos el comando
+        module_button.command = lambda: self.call_module(offset + index)                 # le asignamos el comando
         module_button.grid(row=index, column=0)                                 # lo colocamos en la posicion que corresponde
 
         new_module = module.load(self.master.container) # creamos el marco de la herramienta
