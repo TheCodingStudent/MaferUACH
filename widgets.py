@@ -129,6 +129,11 @@ class Main(Frame):
         }
         for message in self.message:                                    # por cada linea en el mensaje creamos una etiqueta
             Label(self.text, text=message, **config).pack(side='top')   # y la ponemos en el centro
+    
+    def bind(self, event, func):
+        self.logos.bind(event, func)
+        self.text.bind(event, func)
+        self.container.bind(event, func)
 
 ##### ELEMENTOS #####
 class Bar(Frame):
@@ -163,7 +168,7 @@ class LeftBar(Frame):
         ##### PROPERTIES #####
         self.master = master                # elemento padre, podremos referenciarlo despues
         self.width = self['width']          # guardamos el ancho minimo de la barra
-        self.bar_width = (150, 150, 150)    # estos son los anchos para cada elemento en la barra
+        self.bar_width = (200, 200, 200)    # estos son los anchos para cada elemento en la barra
         self.toggled = False                # esta propiedad nos dice si la barra esta desplegada o no
         self.on_animation = False           # esta propiedad nos permite saber si la barra se esta contrayendo/desplegando
         self.current_index = None           # este sera el menu que este activo, inicialmente ninguno esta activo
@@ -173,7 +178,7 @@ class LeftBar(Frame):
         self.modules = 0
 
         ##### STYLE #####
-        self.time = 3      # tiempo que dura la animacion de la barra en completarse (frames)
+        self.time = 20      # tiempo que dura la animacion de la barra en completarse (frames)
         control_points = [  # estos son los puntos de control para crear una curva bezier y darle un efecto elegante a la barra
             (0, 0),
             (1, 0),
@@ -302,7 +307,7 @@ class LeftBar(Frame):
         module_button.command = lambda: self.call_module(offset + index)                 # le asignamos el comando
         module_button.grid(row=index, column=0)                                 # lo colocamos en la posicion que corresponde
 
-        new_module = module.load(self.master.container) # creamos el marco de la herramienta
+        new_module = module.load(self.master.container, '<Button-1>', self.deactivate) # creamos el marco de la herramienta
         self.master.add_frame(new_module)               # lo agregamos al contenedor de la aplicacion
 
     def call_module(self, index):
@@ -312,6 +317,26 @@ class LeftBar(Frame):
         """
         self.master.container.show_frame(index)
     
+    def activate(self, event):
+        if self.on_animation: return
+        self.on_animation = True
+        rng = range(self.time + 1)
+        for t in rng:
+            self['width'] = self.width + self.curve.eval(t)
+            self.update()
+        self.on_animation = False
+        self.toggled = True
+    
+    def deactivate(self, event):
+        if self.on_animation or (not self.toggled): return
+        self.on_animation = True
+        rng = range(self.time + 1)
+        for t in reversed(rng):
+            self['width'] = self.width + self.curve.eval(t)
+            self.update()
+        self.on_animation = False
+        self.toggled = False
+
     def toggle(self, event):
         """
         Se encarga de la animacion de desplegar/contraer la barra lateral,
@@ -319,12 +344,5 @@ class LeftBar(Frame):
         aplicacion a cada frame. El tiempo de la animacion puede ser cambiado
         con la propiedad 'self.time'
         """
-        if self.on_animation: return                        # si se encuentra en medio de la animacion no hacemos nada, esto previene errores de animacion
-        self.on_animation = True                            # actualizamos que la animacion esta en proceso
-        rng = range(self.time+1)                            # el rango de la animacion sera igual al tiempo que tarde esta
-        if self.toggled: rng = reversed(rng)                # si ya esta desplegada, entonces invertimos el rango para contraer la barra lateral
-        for t in rng:
-            self['width'] = self.width + self.curve.eval(t) # actualizamos el ancho de la barra lateral
-            self.update()                                   # actualizamos la pantalla para ver la animacion
-        self.toggled = not self.toggled                     # actualizamos el estado de la barra lateral
-        self.on_animation = False                           # actualizamos que la animacion se completo
+        if not self.toggled: self.activate(event)
+        else: self.deactivate(event)

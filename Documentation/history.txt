@@ -85,3 +85,13 @@ Podria describir sus funciones de la siguiente manera:
     * El modulo de Arquimides funciona de momento, tambien añadi un sistema de estilos, esto me permitira de manera sencilla
     cambiar los colores de los modulos, este sistema unicamente esta en "modules.common", ya que los estilos solo se usaran 
     para los modulos. Planteo la idea de tener un json con el tema, asi se cambiara en todos lados. (6:15pm)
+
+    * Pruebo con Demian en busqueda de Bugs: (6:22pm)
+        1.- Aparecen Nones cuando no hay valor calculado                                ✔ (6:45pm)
+        2.- Error de hover en FlatButton                                                ✔ (6:51pm)
+        3.- Posible solucion: Actualizar la ventana tras cargar modulo                  ✔ (7:05pm)
+        4.- Corregir ortografia                                                         ✔ (6:20pm)
+        5.- Idea: Sobreponer la barra lateral para mayor eficiencia y escalabilidad     ✔ (7:05pm)
+        6.- La barra lateral puede activarse y desactivarse eternamente
+    
+    * Ahora la barra se desactiva cuando presionas fuera de ella. (7:06pm)

@@ -14,7 +14,7 @@ class Module:
         self.name = name
         self.extended_name = extended_name if extended_name else self.name
     
-    def load(self, master):
+    def load(self, master, event=None, func=None):
         """
         Esta es la funcion predefinida para cargar un modulo, crea un 
         marco con el nombre del modulo
@@ -76,6 +76,7 @@ class EntryFrame(Frame):
     
     def insert(self, values):
         for i, value in enumerate(values):
+            if not value: continue
             self.entries[i].delete(0, 'end')
             self.entries[i].insert(0, str(value))
     
@@ -107,23 +108,30 @@ class FlatButton(Frame):
         self.command = command
         self.text = Label(self, text=text)
         self.text.place(relx=0.5, rely=0.5, anchor='center')
-        self.bind('<Button-1>', self.exec)
+        self.was_hovered = False
 
         ##### CONEXIONES #####
         self.bind('<Enter>', self.hover)            # cuando el mouse entre al boton, cambiamos el color
-        self.bind('<Leave>', self.normal)          # cuando el mouse deje el boton, cambiamos el color
+        self.bind('<Leave>', self.unhover)          # cuando el mouse deje el boton, cambiamos el color
         self.bind('<Button-1>', self.exec)          # cuando demos click ejecutamos el comando
         self.bind('<ButtonRelease-1>', self.normal)
         self.text.bind('<Button-1>', self.exec)     # cuando demos click en la etiqueta ejecutamos
         self.text.bind('<ButtonRelease-1>', self.normal)
     
     def normal(self, event):
-        self['bg'] = self.original_color
-        self.text['bg'] = self.original_color
+        if not self.was_hovered:
+            self['bg'] = self.original_color
+            self.text['bg'] = self.original_color
+        else: self.hover(event)
+    
+    def unhover(self, event):
+        self.was_hovered = False
+        self.normal(event)
     
     def hover(self, event):
         self['bg'] = self.hover_color
         self.text['bg'] = self.hover_color
+        self.was_hovered = True
     
     def exec(self, event): 
         self['bg'] = self.click_color

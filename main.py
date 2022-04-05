@@ -39,15 +39,16 @@ class Window(Tk):
         self.creator = Label(self.bottom_bar, text='Ing.Armando Chaparro', **config)    # creamos la etiqueta para el creador. Debo darme credito a mi mismo 🤣
         self.creator.place(relx=1, rely=1, anchor='se')                                 # lo colocamos hasta la derecha
 
-        self.left_bar = LeftBar(self, width=50)     # esta sera la barra lateral, donde se escogeran las herramientas
-        self.left_bar.pack(side='left', fill='y')   # la ponemos a la izquierda y que ocupe todo el alto
-
         self.container = Container(self, bg='#ede7f6')              # creamos el contenedor de modulos
-        self.container.pack(side='top', expand=True, fill='both')   # lo colocamos y hacemos que se expanda para cubrir la ventana
+        self.container.place(x=50, y=0, relwidth=1, relheight=1)
+
+        self.left_bar = LeftBar(self, width=50)     # esta sera la barra lateral, donde se escogeran las herramientas
+        self.left_bar.place(x=0, y=0, relheight=1)
 
         self.left_bar.load_courses(all_courses)         # cargamos todos los modulos
         
         self.main_frame = Main(self.container)          # cargamos la ventana de presentacion, ahi vendran creditos, logos, mensajes, etc...
+        self.main_frame.bind('<Button-1>', self.left_bar.deactivate)
         self.container.frames.append(self.main_frame)   # lo agregamos al contenedor de la aplicacion
         self.container.show_frame(-1)                   # hacemos que muestre la pagina principal (-1 por que es la ultima agregada)
 

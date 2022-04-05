@@ -1,31 +1,24 @@
 from modules.common import *
-import utils
 
 class Fisica(Base):
     def __init__(self):
-        modules = [
-            Termodinamica,
-            Cinematica
-        ]
-        super().__init__('images/left.png', 'Fisica', modules)
+        modules = [Termodinamica, Cinematica]
+        super().__init__('images/left.png', 'Física', modules)
 
 class Termodinamica(Base):
     def __init__(self):
-        modules = [
-            Arquimides,
-            Dilatacion
-        ]
-        super().__init__('images/left.png', 'Termodinamica', modules)
+        modules = [Arquimides, Dilatacion]
+        super().__init__('images/left.png', 'Termodinámica', modules)
 
 class Arquimides(Module):
     def __init__(self):
-        super().__init__('images/left.png', 'Arquimides', 'Principio de Arquimides')
+        super().__init__('images/left.png', 'Arquímides', 'Principio de Arquímides')
     
     def main_frame(self, master):
         frame = Frame(master, bg=master['bg'])
         entries = [
             ('Empuje (E):', 'N'),
-            ('Densidad de fluido (ρ):', 'Kg/m3'),
+            ('Densidad de fluído (ρ):', 'Kg/m3'),
             ('Peso aparente (Wa):', 'N'),
             ('Peso (w):', 'N'),
             ('Masa (m):', 'Kg'),
@@ -67,11 +60,18 @@ class Arquimides(Module):
         frame = Frame(master, bg='red')
         return frame
     
-    def load(self, master):
+    def load(self, master, event=None, func=None):
         frame = Frame(master, bg=master['bg'])
-        self.header(frame).pack(side='top', fill='x')
-        self.main_frame(frame).pack(side='top', expand=True, fill='both')
-        self.bottom_frame(frame).pack(side='top', expand=True, fill='both')
+        header_frame = self.header(frame)
+        header_frame.pack(side='top', fill='x')
+        main_frame = self.main_frame(frame)
+        main_frame.pack(side='top', expand=True, fill='both')
+        bottom_frame = self.bottom_frame(frame)
+        bottom_frame.pack(side='top', expand=True, fill='both')
+        if event:
+            header_frame.bind(event, func)
+            main_frame.bind(event, func)
+            bottom_frame.bind(event, func)
         return frame
     
     def calculate(self, values):
@@ -102,7 +102,7 @@ class Arquimides(Module):
 
 class Dilatacion(Module):
     def __init__(self):
-        super().__init__('images/left.png', 'Dilatacion')
+        super().__init__('images/left.png', 'Dilatación')
 
 class Cinematica(Base):
     def __init__(self):
@@ -110,7 +110,7 @@ class Cinematica(Base):
             Uniforme,
             Variado,
         ]
-        super().__init__('images/left.png', 'Cinematica', modules)
+        super().__init__('images/left.png', 'Cinemática', modules)
 
 class Uniforme(Module):
     def __init__(self):
