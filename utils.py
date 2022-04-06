@@ -1,6 +1,9 @@
 from pygame.math import Vector2
 
-def rgb2hex(*rgb):
+def lerp(a, b, t):
+    return a + (b - a) * t
+
+def rgb_to_hex(*rgb):
     r, g, b = int(rgb[0]), int(rgb[1]), int(rgb[2])
     return  '#{:02x}{:02x}{:02x}'.format(r, g, b)
 
@@ -13,12 +16,22 @@ def hex_to_rgb(value):
 def opacity(hex_color, opacity):
     r, g, b = hex_to_rgb(hex_color)                                              
     nr, ng, nb = r * opacity, g * opacity, b * opacity    
-    return rgb2hex(nr, ng, nb) 
+    return rgb_to_hex(nr, ng, nb)
+
+def light(hex_color, light):
+    r, g, b = hex_to_rgb(hex_color)                                              
+    nr, ng, nb = lerp(r, 255, light), lerp(g, 255, light), lerp(b, 255, light)    
+    return rgb_to_hex(nr, ng, nb)
+
+def color_lerp(a, b, t):
+    ar, ag, ab = hex_to_rgb(a)
+    br, bg, bb = hex_to_rgb(b)
+    nr, ng, nb = lerp(ar, br, t), lerp(ag, bg, t), lerp(ab, bb, t)
+    return rgb_to_hex(nr, ng, nb)
 
 class Bezier:
-    def __init__(self, points, rng, width=1, start=(0, 0)):
+    def __init__(self, points, rng, width=1):
         self.width = width
-        self.start = Vector2(start)
         self.range = [step/rng for step in range(rng+1)]
         self.points = [Vector2(point) for point in points]
         self.get_curve()
@@ -37,7 +50,7 @@ class Bezier:
         self.curve = []
         for t in self.range:
             point = self.get_point(self.points, t)
-            self.curve.append(point * self.width + self.start)
+            self.curve.append(point * self.width)
     
     def eval(self, t):
         return self.curve[t][1]

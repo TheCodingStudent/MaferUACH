@@ -103,3 +103,17 @@ Podria describir sus funciones de la siguiente manera:
     customizacion del programa. (7:28am)
     * EntryFrame ya cuenta con el sistema de estilos de JSON. (7:43am)
     * ButtonFrame ya cuenta con el sistema de estilos de JSON. (7:59am)
+    * Arreglados errores minimos. (1:34pm)
+    * Cada modulo ahora tendra una barra de procedimiento y formulario. (1:46pm)
+
+    * Agregar:                  (1:51pm)
+        - Equilibrio termico
+        - Dilatacion Termica
+        - Graficadora
+        - En Arquimedes agregar porcentaje de flotabilidad
+        - Procedimiento en cada modulo
+        - Formulario y definicion para cada modulo
+    
+    * Decidi añadir un nuevo archivo llamado "modern.py", ahi pondre todos los widgets personalizados, aplicando lo que aprenda
+    de User Interface, de momento solo hay un boton que puede cambiar de forma (FlatButton), estoy muy cansado y me estoy quedando
+    dormido asi que guardare la version y dare por terminado hoy. (11:18pm)

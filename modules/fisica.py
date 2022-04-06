@@ -32,11 +32,6 @@ class Arquimedes(Module):
         buttons = [
             [('Limpiar...', self.entries.clear), ('Calcular...', lambda: self.calculate(self.entries.get_values()))]
         ]
-        button_config = {
-            'width': 100,
-            'height': 20,
-            'bg': '#b39ddb'
-        }
         self.buttons = ButtonFrame(self.entries, buttons)
         self.buttons.grid(row=7, column=1)
         return frame
@@ -47,12 +42,14 @@ class Arquimedes(Module):
     
     def load(self, master, event=None, func=None):
         frame = Frame(master, bg=master['bg'])
+        bottom_frame = self.bottom_frame(frame)
+        bottom_frame['width'] = 300
+        bottom_frame.pack(side='right', fill='y')
         header_frame = self.header(frame)
         header_frame.pack(side='top', fill='x')
         main_frame = self.main_frame(frame)
-        main_frame.pack(side='top', expand=True)
-        bottom_frame = self.bottom_frame(frame)
-        bottom_frame.pack(side='top', expand=True, fill='both')
+        main_frame.pack(side='top', expand=True, fill='both')
+        Frame(frame, bg='blue').pack(side='top', expand=True, fill='both')
         if event:
             header_frame.bind(event, func)
             main_frame.bind(event, func)
@@ -115,11 +112,6 @@ class Dilatacion(Module):
         buttons = [
             [('Limpiar...', self.entries.clear), ('Calcular...', lambda: self.calculate(self.entries.get_values()))]
         ]
-        button_config = {
-            'width': 100,
-            'height': 20,
-            'bg': '#b39ddb'
-        }
         self.buttons = ButtonFrame(self.entries, buttons, width=100, height=20)
         self.buttons.grid(row=8, column=1, pady=10)
         return frame
@@ -143,10 +135,10 @@ class Dilatacion(Module):
         return frame
     
     def calculate(self, values):
-        diminicial, dimfinal, dimdif, tempinicial, tempfinal, tempdif, tipocoef = values
+        print(values)
         
         new_values = []
-        if new_values != values: self.calculate(new_values.copy())
+        if new_values != values and new_values: self.calculate(new_values.copy())
         else: self.entries.insert(new_values)
 
 class Cinematica(Base):
