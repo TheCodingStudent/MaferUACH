@@ -70,7 +70,7 @@ class IconButton(Frame):
         light = 0.9                                     # damos valor a la luminosidad del boton cuando el cursor se pose
         nr, ng, nb = r * light, g * light, b * light    # obtenemos los colores con la luminosidad deseada
         self.original_color = self['bg']                # guardamos el color original, ya que despues sera cambiado
-        self.hover_color = utils.rgb2hex(nr, ng, nb)    # guardamos el nuevo color con diferente luminosidad
+        self.hover_color = utils.rgb_to_hex(nr, ng, nb)    # guardamos el nuevo color con diferente luminosidad
 
         self.command = command  # guardamos el comando a ejecutar
 

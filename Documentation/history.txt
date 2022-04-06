@@ -117,3 +117,7 @@ Podria describir sus funciones de la siguiente manera:
     * Decidi añadir un nuevo archivo llamado "modern.py", ahi pondre todos los widgets personalizados, aplicando lo que aprenda
     de User Interface, de momento solo hay un boton que puede cambiar de forma (FlatButton), estoy muy cansado y me estoy quedando
     dormido asi que guardare la version y dare por terminado hoy. (11:18pm)
+
+    -06/04/22:
+        * CAMBIOS DE Demian
+            - Quitar logo de MAFER "cementos"

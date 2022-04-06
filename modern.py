@@ -8,23 +8,24 @@ class FlatButton(Frame):
         ##### PROPERTIES #####
         self.on_animation = False
         self.expand = expand
-        self.time = 50
+        self.time = 500
         self.width, self.height = self['width'], self['height']
         self.final_width, self.final_height = 300, 300
         self.curve = Bezier([(0, 0), (1, 1)], self.time, expand)
 
         ##### BUTTON STYLE #####
         self.base_color = self['bg']
-        self.highlight_color = "#00ffff"
+        self.highlight_color = "#3cfac8"
 
         ##### TEXT STYLE #####
         self.font_size = 12
         self.font = 'Arial'
-        self.font_color = '#ffffff'
-        self.final_font_size = 18
+        self.base_font_color = '#ffffff'
+        self.highlight_font_color = '#000000'
+        self.final_font_size = 36
 
         ##### COMPONENTS #####
-        self.text = Label(self, text=text, fg=self.font_color, bg=self['bg'], font=f'{self.font} {self.font_size}')
+        self.text = Label(self, text=text, fg=self.base_font_color, bg=self['bg'], font=f'{self.font} {self.font_size}')
         self.text.place(relx=0.5, rely=0.5, anchor='center')
 
         ##### CONNECTIONS #####
@@ -39,8 +40,10 @@ class FlatButton(Frame):
             self['width'] = lerp(self.width, self.final_width, percent)
             self['height'] = lerp(self.height, self.final_height, percent)
             new_bg = color_lerp(self.base_color, self.highlight_color, percent)
+            new_fg = color_lerp(self.base_font_color, self.highlight_font_color, percent)
             self['bg'] = new_bg
             self.text['bg'] = new_bg
+            self.text['fg'] = new_fg
             self.text['font'] = f'{self.font} {int(lerp(self.font_size, self.final_font_size, percent))}'
             self.update()
         self.on_animation = False
