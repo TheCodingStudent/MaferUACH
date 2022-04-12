@@ -118,6 +118,22 @@ Podria describir sus funciones de la siguiente manera:
     de User Interface, de momento solo hay un boton que puede cambiar de forma (FlatButton), estoy muy cansado y me estoy quedando
     dormido asi que guardare la version y dare por terminado hoy. (11:18pm)
 
-    -06/04/22:
-        * CAMBIOS DE Demian
-            - Quitar logo de MAFER "cementos"
+- 06/04/22:
+    * CAMBIOS DE Demian
+        - Quitar logo de MAFER "cementos"
+
+- 09/04/22:
+    * Me estoy quedando sin ideas y ganas para programar, asi que tomare el proyecto con mas calma por unos dias hasta que obtenga
+    ideas nuevas, por el dia de hoy intentare hacer modulos. (11:32am)
+    * Cambio de planes, debo ir a trabajar a la otra casa. (11:48am)
+
+- 12/04/22:
+    *  Hoy como no he tenido nuevas ideas y la verdad no tengo muchas ganas de programar nuevos modulos, decidi que hare una nueva rama
+    en GIT para trabajar en la estetica de MAFER, con la intencion de que sea el diseño definitivo, ya teniendo el diseño definitivo
+    y habiendome decidido por alguno de los chorrocientos logos que hice, podre empezar a trabajar en la presentacion con Adobe 
+    Ilustrator. (8:59am)
+    Pendientes:
+        - Utilizar SVG con Tkinter
+        - Aprender Adobe Ilustrator
+        - ¿Trabajar en una pagina web? (espero que no)
+        - ¿Dormir? (tal vez)
