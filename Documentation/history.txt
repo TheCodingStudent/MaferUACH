@@ -133,8 +133,8 @@ Podria describir sus funciones de la siguiente manera:
     y habiendome decidido por alguno de los chorrocientos logos que hice, podre empezar a trabajar en la presentacion con Adobe 
     Ilustrator. (8:59am)
     Pendientes:
-        - Utilizar SVG con Tkinter
-        - Aprender Adobe Ilustrator
+        - Utilizar SVG con Tkinter                      ❌
+        - Aprender Adobe Ilustrator                     
         - ¿Trabajar en una pagina web? (espero que no)
         - ¿Dormir? (tal vez)
 
@@ -151,3 +151,11 @@ Podria describir sus funciones de la siguiente manera:
     * El dia de hoy fui a las albercas, y mientras estaba nadando pense en que podia aplicar transparencias a una imagen de ilustrator para
     añadir de un modo basico "glassmorphism", pero en realidad no se si se acople al diseño de MAFER o hasta donde pueda llevar los
     limites de Tkinter. (4:20pm)
+
+    * Añadir multiples formatos para la unidades: (4:47pm)
+        - exponencial
+        - decimal
+        - redondeado
+        - exacto
+    * Radianes y grados, o tal vez un convertidor
+    * Diferentes opciones para las unidades
