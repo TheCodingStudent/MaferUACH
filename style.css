@@ -1,0 +1,7 @@
+square{
+    transition: transform 1s;
+}
+
+square{
+    transform: rotate(360deg);
+}

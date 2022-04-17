@@ -128,7 +128,7 @@ Podria describir sus funciones de la siguiente manera:
     * Cambio de planes, debo ir a trabajar a la otra casa. (11:48am)
 
 - 12/04/22:
-    *  Hoy como no he tenido nuevas ideas y la verdad no tengo muchas ganas de programar nuevos modulos, decidi que hare una nueva rama
+    * Hoy como no he tenido nuevas ideas y la verdad no tengo muchas ganas de programar nuevos modulos, decidi que hare una nueva rama
     en GIT para trabajar en la estetica de MAFER, con la intencion de que sea el diseño definitivo, ya teniendo el diseño definitivo
     y habiendome decidido por alguno de los chorrocientos logos que hice, podre empezar a trabajar en la presentacion con Adobe 
     Ilustrator. (8:59am)
@@ -137,3 +137,17 @@ Podria describir sus funciones de la siguiente manera:
         - Aprender Adobe Ilustrator
         - ¿Trabajar en una pagina web? (espero que no)
         - ¿Dormir? (tal vez)
+
+- 14/04/22:
+    * Estos ultimos dias no he tenido mucha inspiracion para el proyecto, supongo que tener tanto tiempo libre me ha quitado las ganas
+    de programar, ya que programar era lo que me sacaba de las actividades diarias pero ahora ya no las tengo. LLegue a la conclusion de
+    no forzarme, seguire estudiando de manera paulatina pero no me obligare a programar. Continuare escribiendo en este documento de manera
+    terapeutica. (12:23pm)
+    * He pensado en que el proyecto se llama MAFER pero aun no tenemos algun asistente integrado, asi que lo que sigue es añadir reconocimiento
+    de voz para darle comandos, ademas de tal vez una barra donde puedas directamente buscar el modulo que necesitas sin navegar por todas las
+    materias en caso de que no sepas bien donde pertenece el modulo. Tambien el cambio de diseño sigue en progreso. (12:25pm)
+
+- 17/04/22:
+    * El dia de hoy fui a las albercas, y mientras estaba nadando pense en que podia aplicar transparencias a una imagen de ilustrator para
+    añadir de un modo basico "glassmorphism", pero en realidad no se si se acople al diseño de MAFER o hasta donde pueda llevar los
+    limites de Tkinter. (4:20pm)

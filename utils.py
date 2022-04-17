@@ -54,3 +54,29 @@ class Bezier:
     
     def eval(self, t):
         return self.curve[t][1]
+
+    
+def rgb_to_hsl(r, g, b):
+    r = float(r)
+    g = float(g)
+    b = float(b)
+    high = max(r, g, b)
+    low = min(r, g, b)
+    h, s, v = ((high + low) / 2,)*3
+
+    if high == low:
+        h = 0.0
+        s = 0.0
+    else:
+        d = high - low
+        s = d / (2 - high - low) if v > 0.5 else d / (high + low)
+        h = {
+            r: (g - b) / d + (6 if g < b else 0),
+            g: (b - r) / d + 2,
+            b: (r - g) / d + 4,
+        }[high]
+        h /= 6
+
+    return 240*h, (360*s%240), v
+
+print(rgb_to_hsl(191, 64, 128))
