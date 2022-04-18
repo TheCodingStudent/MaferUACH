@@ -1,10 +1,9 @@
 ##### IMPORTAMOS LIBRERIAS Y CLASES #####
-from tkinter import Button, Frame, Label, Entry
+from tkinter import Frame, Label, Entry
 from widgets import Photo
-import utils, json
+import utils, color
 
-with open('style.json', 'r') as f:
-    data = json.load(f)
+STYLE = utils.get_style()
 
 class Module:
     """
@@ -33,8 +32,8 @@ class Module:
             frame, 
             text=self.extended_name,
             bg=master['bg'],
-            font=data['big_font'],
-            fg=data['text_color']
+            font=STYLE['big_font'],
+            fg=color.atenuate(STYLE['color'], 200, 30)
         ).pack(side='top', fill='x', pady=10)
         return frame
 
@@ -57,17 +56,17 @@ class EntryFrame(Frame):
         self.entries = []
         text_config = {
             'bg': master['bg'],
-            'fg': data['text_color'],
-            'font': data['normal_font']
+            'fg': color.atenuate(STYLE['color'], 200, 30),
+            'font': STYLE['normal_font']
         }
         entry_config = {
-            'bg': 'white',
-            'fg': 'black',
-            'selectbackground': data['select_background'],
-            'selectforeground': data['select_foreground'],
+            'bg': color.atenuate(STYLE['color'], 200, 30),
+            'fg': color.atenuate(STYLE['color'], 40, 30),
+            'selectbackground': color.atenuate(STYLE['color'], 145, 120),
+            'selectforeground': color.atenuate(STYLE['color'], 40, 30),
             'relief': 'flat',
             'width': 20,
-            'font': data['normal_font']
+            'font': STYLE['normal_font']
         }
         for i, (label, unit) in enumerate(entries):
             Label(self, text=label, **text_config).grid(row=i, column=0, sticky='e')
@@ -109,18 +108,18 @@ class FlatButton(Frame):
         frame_config = {
             'width': width,
             'height': height,
-            'bg': '#b39ddb'
+            'bg': color.atenuate(STYLE['color'], 145, 120)
         }
         super().__init__(master, **frame_config)
         self.command = command
         text_config = {
             'bg': self['bg'],
-            'fg': data['text_color'],
-            'font': data['normal_font']
+            'fg': 'white',
+            'font': STYLE['normal_font']
         }
         self.original_color = self['bg']
-        self.hover_color = data['hover_color']
-        self.click_color = data['click_color']
+        self.hover_color = color.atenuate(STYLE['color'], 160, 120)
+        self.click_color = color.atenuate(STYLE['color'], 130, 120)
         self.text = Label(self, text=text, **text_config)
         self.text.place(relx=0.5, rely=0.5, anchor='center')
         self.was_hovered = False

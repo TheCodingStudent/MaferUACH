@@ -1,11 +1,10 @@
 {
-    "neutrak_color": "#ede7f6",
-    "main_color": "#673ab7",
+    "color": "#0000ff",
+    "theme": "dark",
     "text_color": "#311b92",
     "select_background": "#651fff",
     "select_foreground": "#ede7f6",
     "normal_font": "Arial 12",
     "big_font": "Arial 24 bold",
-    "hover_color": "#ffff00",
-    "click_color": "#00ff00"
+    "menu_font": "Arial 10"
 }

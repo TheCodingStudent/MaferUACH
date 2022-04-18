@@ -1,7 +1,10 @@
 ##### IMPORTAR LIBRERIAS #####
 from tkinter import *
 from PIL import ImageTk, Image
-import utils
+from bezier import Bezier
+import utils, color
+
+STYLE = utils.get_style()
 
 ##### WIDGETS #####
 class Container(Frame):
@@ -63,14 +66,17 @@ class IconButton(Frame):
         if image:
             self.image = Photo(self, image)                             # creamos la imagen del boton
             self.image.place(x=0, y=0)                                  # colocamos la imagen al lado izquierdo
-        self.text = Label(self, text=text, bg=self['bg'], fg='white')   # creamos el texto del boton
+        self.text = Label(
+            self, 
+            text=text, 
+            bg=self['bg'], 
+            fg=color.atenuate(STYLE['color'], 230, 30),
+            font=STYLE['menu_font']
+        )   # creamos el texto del boton
         self.text.place(relx=0.6, rely=0.5, anchor='center')            # lo colocamos a la mitad, cargado ligeramente a la derecha
 
-        r, g, b = utils.hex_to_rgb(self['bg'])          # obtenemos los colores del boton
-        light = 0.9                                     # damos valor a la luminosidad del boton cuando el cursor se pose
-        nr, ng, nb = r * light, g * light, b * light    # obtenemos los colores con la luminosidad deseada
         self.original_color = self['bg']                # guardamos el color original, ya que despues sera cambiado
-        self.hover_color = utils.rgb_to_hex(nr, ng, nb)    # guardamos el nuevo color con diferente luminosidad
+        self.hover_color = color.atenuate(STYLE['color'], 145, 120)
 
         self.command = command  # guardamos el comando a ejecutar
 
@@ -184,19 +190,19 @@ class LeftBar(Frame):
             (1, 0),
             (1, 1)
         ]
-        self.curve = utils.Bezier(              # creamos la curva bezier (mas informacion en utils.py)
+        self.curve = Bezier(              # creamos la curva bezier (mas informacion en utils.py)
             control_points,
             self.time,
             width=sum(self.bar_width)-self.width
         )
 
         ##### CONTENT #####
-        self.course_frame = Bar(self, width=self.bar_width[0], bg='#673ab7')        # este sera el contenedor de los botones para las materias
+        self.course_frame = Bar(self, width=self.bar_width[0], bg=color.atenuate(STYLE['color'], 50, 30))        # este sera el contenedor de los botones para las materias
         self.course_frame.place(x=0, y=0, relheight=1)                              # lo colocamos a la izquierda
 
-        self.subject_frame = Container(self, width=self.bar_width[1], bg='#9575cd') # este sera el contenedor para los temas de cada materia
+        self.subject_frame = Container(self, width=self.bar_width[1], bg=color.atenuate(STYLE['color'], 75, 30)) # este sera el contenedor para los temas de cada materia
         self.subject_frame.place(x=self.bar_width[0], y=0, relheight=1)             # lo colocamos al centro
-        self.module_frame = Container(self, width=self.bar_width[2], bg='#b39ddb')  # y este sera el contenedor para los modulos de cada tema
+        self.module_frame = Container(self, width=self.bar_width[2], bg=color.atenuate(STYLE['color'], 100, 30))  # y este sera el contenedor para los modulos de cada tema
         self.module_frame.place(x=sum(self.bar_width[:2]), y=0, relheight=1)        # lo colocamos a la derecha
 
     def show_course(self, index):

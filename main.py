@@ -1,6 +1,9 @@
 ##### IMPORTAR LIBRERIAS #####
+import utils, color
 from widgets import *
 from modules.all import all_courses
+
+STYLE = utils.get_style()
 
 class Window(Tk):
     """
@@ -16,7 +19,7 @@ class Window(Tk):
         super().__init__(**kwargs)
 
         ##### ESTILO #####
-        self['bg'] = '#ede7f6'
+        self['bg'] = color.atenuate(STYLE['color'], 30, 30)
 
         ##### PROPIEDADES #####
         self.screen_width = self.winfo_screenwidth()                        # obtenemos el ancho de la pantalla
@@ -39,7 +42,7 @@ class Window(Tk):
         self.creator = Label(self.bottom_bar, text='Ing.Armando Chaparro', **config)    # creamos la etiqueta para el creador. Debo darme credito a mi mismo 🤣
         self.creator.place(relx=1, rely=1, anchor='se')                                 # lo colocamos hasta la derecha
 
-        self.container = Container(self, bg='#ede7f6')              # creamos el contenedor de modulos
+        self.container = Container(self, bg=self['bg'])              # creamos el contenedor de modulos
         self.container.place(x=50, y=0, relwidth=1, relheight=1)
 
         self.left_bar = LeftBar(self, width=50)     # esta sera la barra lateral, donde se escogeran las herramientas

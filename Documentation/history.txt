@@ -159,3 +159,10 @@ Podria describir sus funciones de la siguiente manera:
         - exacto
     * Radianes y grados, o tal vez un convertidor
     * Diferentes opciones para las unidades
+
+    * Mientras estoy en llamada con Demian y Javier tengo un momento de inspiracion y decido empezar con el cambio al nuevo diseño, esto incluira
+    cambios para el color, facilitar el cambio de colores y el tema claro u oscuro. (11:05pm)
+    * He agregado "color.py", para separar mas facil las funciones de hsl. (11:19pm)
+    
+- 18/04/22:
+    * Termine con el sistema de colores, ahora recibe un color base y genera la paleta de colores. (1:02am)
