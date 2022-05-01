@@ -1,7 +1,7 @@
 ##### IMPORTAMOS LIBRERIAS Y CLASES #####
-from tkinter import Button, Frame, Label, Entry
+from tkinter import Frame, Label, Entry
 from widgets import Photo
-import utils, json
+import json
 
 with open('style.json', 'r') as f:
     data = json.load(f)
