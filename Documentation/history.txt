@@ -167,3 +167,12 @@ Podria describir sus funciones de la siguiente manera:
 - 18/04/22:
     * Termine con el sistema de colores, ahora recibe un color base y genera la paleta de colores. (1:02am)
     * Tras varias horas de sueño y relajacion hoy pretendo tener la presentacion inicial. (3:33pm)
+
+- 30/04/22:
+    * Termine algunos detalles que tenia pendientes con la rama neodesign, ahora puedo fusionar los cambios con la rama master.
+    (Recordatorio para Armando del futuro: utiliza rebase, no merge).
+    Lo que sigue en el proyecto es la fase de automatizacion, estaba pensando en crear una rama "developing" pero en este momento
+    decidi que creare una rama por cada gran actualizacion para que se quede en la posteridad y poder revisitarlas.
+    De momento dejare iniciada la rama "Auto", donde trabajare en que sea de la manera mas sencilla el agregar modulos, ya que entre
+    el trabajo, la universidad y practicas mi tiempo se ha reducido mucho y no puedo mantenerme al con los temas, y lo ideal es agregar 
+    modulos conforme los temas para facilitarme la vida. (11:06)pm
