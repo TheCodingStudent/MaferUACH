@@ -15,5 +15,3 @@ def atenuate(color, light, saturation):
     h, _, _ = rgb_to_hls(*hex_to_rgb(color))
     r, g, b = hls_to_rgb(h, light/240, saturation/240)
     return rgb_to_hex(255*r, 255*g, 255*b)
-
-print(atenuate('#3cfac8', 30, 35))
