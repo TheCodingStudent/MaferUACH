@@ -166,3 +166,4 @@ Podria describir sus funciones de la siguiente manera:
     
 - 18/04/22:
     * Termine con el sistema de colores, ahora recibe un color base y genera la paleta de colores. (1:02am)
+    * Tras varias horas de sueño y relajacion hoy pretendo tener la presentacion inicial. (3:33pm)

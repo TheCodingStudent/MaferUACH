@@ -51,6 +51,27 @@ class Photo(Label):
         kwargs['image'] = self.image                                # damos como argumento la imagen que hicimos previamente
         super().__init__(master, image=self.image, bg=master['bg']) # creamos una etiqueta con la imagen y obtenemos sus propiedades
 
+class Text(Frame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        self['bg'] = master['bg']
+        self.parragraphs = 0
+    
+    def add(self, lines, config={}, padx=0, pady=0, sticky='w'):
+        for i, line in enumerate(lines):
+            Label(
+                self,
+                text=line,
+                **config
+            ).grid(
+                row=i+self.parragraphs, 
+                column=0, 
+                padx=padx, 
+                pady=pady, 
+                sticky=sticky
+            )
+        self.parragraphs += len(lines)
+
 class IconButton(Frame):
     """
     LeftBarButton es un tipo de boton especial para ser 
@@ -109,37 +130,45 @@ class Main(Frame):
     def __init__(self, master):
         super().__init__(master, bg=master['bg'])
 
-        ##### COMPONENTES #####
-        self.container = Frame(self, bg=self['bg'])                                         # el contenedor es el marco principal, permite un diseño dinamico
-        self.container.place(relx=0.5, rely=0.5, anchor='center', relwidth=1, relheight=1)  # lo ponemos en el centro de la ventana y que se pueda expandir
+        self.creator = Label(
+            self,
+            text='ARMANDO CHAPARRO',
+            font=('Segoe UI Black', 12),
+            bg=self['bg'],
+            fg=color.atenuate(STYLE['color'], 200, 30)
+        )
+        self.creator.place(x=30, y=30)
 
-        self.logos = Frame(self.container, bg=self['bg'])                               # este sera el marco para los logos
-        self.logos.place(relx=0.5, rely=0.33, anchor='center', relwidth=1, height=300)  # lo ponemos en el centro y un hacia arriba
-        self.logo_mafer = Photo(self.logos, 'images/logo.png')                          # creamos el logo de Mafer
-        self.logo_mafer.place(relx=0.25, rely=0.5, anchor='center')                     # lo colocamos a la izquierda y en el centro
-        self.logo_uach = Photo(self.logos, 'images/uach.png')                           # creamos el logo de la UACH
-        self.logo_uach.place(relx=0.75, rely=0.5, anchor='center')                      # lo colocamos a la derecha y en el centro
+        self.main = Frame(self, bg=self['bg'])
 
-        self.text = Frame(self.container, bg=self['bg'])                    # este sera el marco para el mensaje principal
-        self.text.place(relx=0.5, rely=0.66, anchor='center')               # lo colocamos en el centro y abajo
-        self.message = [                                                    # aqui esta el mensaje separado por lineas
-            "MAFER es una herramienta para la facultad de ingeniería",
-            "para el desarrollo académico y reforzamiento de aprendizaje.",
-            "Mejora tu conocimiento y resuelve tareas de manera",
-            "sencilla con MAFER."
-        ]
-        config = {                                                      # esta sera la configuracion del texto
-            'bg': self['bg'],                                           # el fondo del texto sera el mismo que del contenedor
-            'fg': "#673ab7",                                            # el color de letra sera un morado
-            'font': 'Arial 12 bold'                                     # fuente arial 12 y negrita
-        }
-        for message in self.message:                                    # por cada linea en el mensaje creamos una etiqueta
-            Label(self.text, text=message, **config).pack(side='top')   # y la ponemos en el centro
+        self.logo = Photo(self.main, 'images/neologo300x240.png')
+        self.logo.grid(column=0, row=0, padx=20)
+
+        self.text = Text(self.main)
+        self.text.add(
+            ['MAFER'],
+            {
+                'font': ('Segoe UI Black', 36),
+                'bg': self['bg'],
+                'fg': color.atenuate(STYLE['color'], 200, 30)
+            }
+        )
+        self.text.add(
+            [
+                '"UNA PERSONA INTELIGENTE RESUELVE PROBLEMAS,',
+                'UN INGENIERO INVENTA ALGO QUE RESUELVA PROBLEMAS."'
+            ],
+            {
+                'font': ('Segoe UI', 12),
+                'bg': self['bg'],
+                'fg': color.atenuate(STYLE['color'], 150, 30)
+            }
+        )
+        self.text.grid(column=1, row=0, sticky='ne')
+        self.main.place(relx=0.5, rely=0.5, anchor='center')
     
     def bind(self, event, func):
-        self.logos.bind(event, func)
-        self.text.bind(event, func)
-        self.container.bind(event, func)
+        pass
 
 ##### ELEMENTOS #####
 class Bar(Frame):
