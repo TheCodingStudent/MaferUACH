@@ -2,7 +2,7 @@
 from tkinter import *
 from PIL import ImageTk, Image
 from bezier import Bezier
-import utils, color
+import utils
 
 STYLE = utils.get_style()
 
@@ -91,13 +91,13 @@ class IconButton(Frame):
             self, 
             text=text, 
             bg=self['bg'], 
-            fg=color.atenuate(STYLE['color'], 230, 30),
+            fg=utils.atenuate(STYLE['color'], 230, 30),
             font=STYLE['menu_font']
         )   # creamos el texto del boton
         self.text.place(relx=0.6, rely=0.5, anchor='center')            # lo colocamos a la mitad, cargado ligeramente a la derecha
 
         self.original_color = self['bg']                # guardamos el color original, ya que despues sera cambiado
-        self.hover_color = color.atenuate(STYLE['color'], 145, 120)
+        self.hover_color = utils.atenuate(STYLE['color'], 145, 120)
 
         self.command = command  # guardamos el comando a ejecutar
 
@@ -135,7 +135,7 @@ class Main(Frame):
             text='ARMANDO CHAPARRO',
             font=('Segoe UI Black', 12),
             bg=self['bg'],
-            fg=color.atenuate(STYLE['color'], 200, 30)
+            fg=utils.atenuate(STYLE['color'], 200, 30)
         )
         self.creator.place(x=30, y=30)
 
@@ -150,7 +150,7 @@ class Main(Frame):
             {
                 'font': ('Segoe UI Black', 36),
                 'bg': self['bg'],
-                'fg': color.atenuate(STYLE['color'], 200, 30)
+                'fg': utils.atenuate(STYLE['color'], 200, 30)
             }
         )
         self.text.add(
@@ -161,7 +161,7 @@ class Main(Frame):
             {
                 'font': ('Segoe UI', 12),
                 'bg': self['bg'],
-                'fg': color.atenuate(STYLE['color'], 150, 30)
+                'fg': utils.atenuate(STYLE['color'], 150, 30)
             }
         )
         self.text.grid(column=1, row=0, sticky='ne')
@@ -226,12 +226,12 @@ class LeftBar(Frame):
         )
 
         ##### CONTENT #####
-        self.course_frame = Bar(self, width=self.bar_width[0], bg=color.atenuate(STYLE['color'], 50, 30))        # este sera el contenedor de los botones para las materias
+        self.course_frame = Bar(self, width=self.bar_width[0], bg=utils.atenuate(STYLE['color'], 50, 30))        # este sera el contenedor de los botones para las materias
         self.course_frame.place(x=0, y=0, relheight=1)                              # lo colocamos a la izquierda
 
-        self.subject_frame = Container(self, width=self.bar_width[1], bg=color.atenuate(STYLE['color'], 75, 30)) # este sera el contenedor para los temas de cada materia
+        self.subject_frame = Container(self, width=self.bar_width[1], bg=utils.atenuate(STYLE['color'], 75, 30)) # este sera el contenedor para los temas de cada materia
         self.subject_frame.place(x=self.bar_width[0], y=0, relheight=1)             # lo colocamos al centro
-        self.module_frame = Container(self, width=self.bar_width[2], bg=color.atenuate(STYLE['color'], 100, 30))  # y este sera el contenedor para los modulos de cada tema
+        self.module_frame = Container(self, width=self.bar_width[2], bg=utils.atenuate(STYLE['color'], 100, 30))  # y este sera el contenedor para los modulos de cada tema
         self.module_frame.place(x=sum(self.bar_width[:2]), y=0, relheight=1)        # lo colocamos a la derecha
 
     def show_course(self, index):

@@ -1,7 +1,8 @@
 ##### IMPORTAR LIBRERIAS #####
-import utils, color
+import utils
 from widgets import *
-from modules.all import all_courses
+
+all_courses = []
 
 STYLE = utils.get_style()
 
@@ -19,7 +20,7 @@ class Window(Tk):
         super().__init__(**kwargs)
 
         ##### ESTILO #####
-        self['bg'] = color.atenuate(STYLE['color'], 30, 30)
+        self['bg'] = utils.atenuate(STYLE['color'], 30, 30)
 
         ##### PROPIEDADES #####
         self.screen_width = self.winfo_screenwidth()                        # obtenemos el ancho de la pantalla

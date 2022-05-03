@@ -175,4 +175,10 @@ Podria describir sus funciones de la siguiente manera:
     decidi que creare una rama por cada gran actualizacion para que se quede en la posteridad y poder revisitarlas.
     De momento dejare iniciada la rama "Auto", donde trabajare en que sea de la manera mas sencilla el agregar modulos, ya que entre
     el trabajo, la universidad y practicas mi tiempo se ha reducido mucho y no puedo mantenerme al con los temas, y lo ideal es agregar 
-    modulos conforme los temas para facilitarme la vida. (11:06)pm
+    modulos conforme los temas para facilitarme la vida. (11:06pm)
+
+- 03/05/22:
+    * Empiezo con la nueva estructura que tendran los modulos de MAFER, ahora constara de una carpeta llamada "modules" con archivos de
+    tipos JSON, y habra una jerarquia. La ventaja de utilizar archivos json es que puedo simplemente leerlos desde el archivo que carga
+    la pagina y cargar todo, haciendo innecesarios los archivos "common" y "all", tambien los JSON son mas faciles de editar para 
+    personas externas a mi, tengo 40 minutos para trabajar en esto antes de que empiece la clase de termodinamica. (11:13am)

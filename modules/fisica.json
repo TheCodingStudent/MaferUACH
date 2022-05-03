@@ -1,0 +1,29 @@
+{
+    "name": "Fisica",
+    "image": "images/left.png",
+    "subjects": [
+        {
+            "name": "Termodinamica",
+            "modules": [
+                {
+                    "module_name": "Arquimides",
+                    "full_name": "Principio de Arquimides",
+                    "variables": [
+                        ["Masa", "m", "kg"],
+                        ["Volumen", "v", "m3"],
+                        ["Peso", "w", "N"],
+                        ["Empuje", "E", "N"],
+                        ["Peso aparente", "wa", "N"],
+                        ["Densidad de objeto", "ρobjeto", "kg/m3"],
+                        ["Densidad de liquido", "ρliquido", "kg/m3"]
+                    ],
+                    "formulas": [
+                        "w=9.81*m", "m=w/9.81",
+                        "ρ=m/v", "m=ρv", "v=m/ρ",
+                        "E=9.81*v*ρ", "v=E/(9.81*ρ)", "ρ=E/(9.81*v)"
+                    ]
+                }
+            ]
+        }
+    ]
+}
