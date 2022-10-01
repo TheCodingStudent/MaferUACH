@@ -1,99 +1,41 @@
+##### IMPORTAR LIBRERIAS #####
 import pygame
 
 class Bezier:
+    """
+    La clase Bezier toma como argumento una serie de puntos de control
+    y permite evaluar el progreso de la curva entre el intervalo [0, 1].
+    """
     def __init__(self, points, rng, width=1):
-        self.width = width
-        self.range = [step/rng for step in range(rng+1)]
-        self.points = [pygame.math.Vector2(point) for point in points]
-        self.get_curve()
+        self.width = width                                              # ancho de la curva
+        self.range = [step/rng for step in range(rng+1)]                # rango de divisiones de la curva
+        self.points = [pygame.math.Vector2(point) for point in points]  # vectores para puntos de control
+        self.get_curve()                                                # obtenemos la curva
 
     def get_point(self, points, t):
-        if len(points) == 1: return points[0]
-        new_points = []
-        for i in range(len(points)-1):
-            a = points[i]
-            b = points[i+1]
-            p = a.lerp(b, t)
-            new_points.append( p )
-        return self.get_point(new_points, t)
+        """
+        Una curva bezier de n grado se puede calcular generando
+        curvas bezier de un grado menor, por ejemplo una curva
+        de segundo grado se obtiene generando curvas de primer grado
+        entre los puntos (A-B) y (B-C), estos a su vez son interpolados
+        y generan una nueva curva de primer grado (ABt-BCt) y esta a su
+        vez es interpolada y nos da un punto P, y asi interpolamos t de 
+        0 a 1.
+        """
+        if len(points) == 1: return points[0]   # si solo hay un punto entonces lo regresamos
+        new_points = []                         # esta sera la lista con los nuevos puntos, la curva bezier es recursiva
+        for i in range(len(points)-1):          # iteramos por cada punto en lista de puntos
+            a = points[i]                       # punto inicial
+            b = points[i+1]                     # punto final
+            p = a.lerp(b, t)                    # p es el punto que se encuentra en el porcentaje t de la recta
+            new_points.append( p )              # añadimos el punto p a la lista de nuevos puntos
+        return self.get_point(new_points, t)    # volvemos a llamar a la funcion pero con los nuevos puntos
     
     def get_curve(self):
-        self.curve = []
-        for t in self.range:
-            point = self.get_point(self.points, t)
-            self.curve.append(point * self.width)
+        self.curve = []                             # lista de puntos que conforman la curva
+        for t in self.range:                        # iteramos por cada t en el rango de la curva
+            point = self.get_point(self.points, t)  # obtenemos el punto en el intervalo t
+            self.curve.append(point * self.width)   # añadimos el punto a la lista de puntos
     
     def eval(self, t):
-        return self.curve[t][1]
-
-if __name__ == '__main__':
-    pygame.init()
-    SCREEN = pygame.display.set_mode((1000, 1000))
-    WIDTH, HEIGHT = SCREEN.get_size()
-    RUNNING = True
-
-    class Point:
-        def __init__(self, pos):
-            self.pos = pygame.math.Vector2(pos)
-        
-        def show(self):
-            pygame.draw.circle(SCREEN, 'white', self.pos, RADIUS, width=1)
-        
-        def move(self, rel):
-            self.pos += pygame.math.Vector2(rel)
-
-    CURVE = []
-    POINTS = []
-    SELECTED = None
-    RADIUS = 20
-
-    def add_point(pos, button):
-        click_pos = pygame.math.Vector2(pos)
-        for point in POINTS:
-            if click_pos.distance_to(point.pos) < RADIUS: 
-                if button == 1: return point
-                POINTS.remove(point)
-        if button == 1: POINTS.append(Point(pos))
-        get_curve()
-        return None
-
-    def get_point(points, t):
-        if len(points) == 1: return points[0]
-        new_points = []
-        for i in range(len(points)-1):
-            a = points[i]
-            b = points[i+1]
-            p = a.lerp(b, t)
-            new_points.append( p )
-        return get_point(new_points, t)
-
-    def get_curve(steps=100):
-        global CURVE
-        points = [point.pos for point in POINTS]
-        CURVE = []
-        for t in range(steps):
-            point = get_point(points, t/steps)
-            CURVE.append(point)
-
-    while RUNNING:
-        SCREEN.fill('black')
-        for event in pygame.event.get():
-            match (event.type, SELECTED != None):
-                case (pygame.QUIT, _): RUNNING = False
-                case (pygame.MOUSEBUTTONDOWN, _): SELECTED = add_point(event.pos, event.button)
-                case (pygame.MOUSEBUTTONUP, _): SELECTED = None
-                case (pygame.MOUSEMOTION, True): 
-                    SELECTED.move(event.rel)
-                    get_curve()
-        
-        for point in POINTS:
-            point.show()
-        
-        for point in CURVE:
-            if point: pygame.draw.circle(SCREEN, 'red', point, 1)
-        
-        pygame.display.update()
-
-    for point in POINTS:
-        print(point.pos)
-            
+        return self.curve[t][1]     # accedemos a la curva en el intervalo t y regresamos el punto

@@ -33,16 +33,6 @@ class Window(Tk):
         self.iconbitmap("images/uach.ico")                                  # y un icono
 
         ##### COMPONENTES #####
-        self.bottom_bar = Frame(self, height=25, bg='#651fff')  # creamos la barra inferior, para poner informacion variada
-        self.bottom_bar.pack(side='bottom', fill='x')           # la ponemos abajo y que ocupe todo el ancho
-        config = {                                              # esta sera la configuracion para el texto de la barra inferior
-            'bg': self.bottom_bar['bg'],                        # el fondo del texto sera el mismo que de la barra
-            'fg': "#ede7f6",                                    # el color de texto sera un blanco con morado
-            'font': 'Arial 8 bold'                              # fuente arial 8 negrita
-        }
-        self.creator = Label(self.bottom_bar, text='Ing.Armando Chaparro', **config)    # creamos la etiqueta para el creador. Debo darme credito a mi mismo 🤣
-        self.creator.place(relx=1, rely=1, anchor='se')                                 # lo colocamos hasta la derecha
-
         self.container = Container(self, bg=self['bg'])              # creamos el contenedor de modulos
         self.container.place(x=50, y=0, relwidth=1, relheight=1)
 

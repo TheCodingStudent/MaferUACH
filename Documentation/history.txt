@@ -182,3 +182,10 @@ Podria describir sus funciones de la siguiente manera:
     tipos JSON, y habra una jerarquia. La ventaja de utilizar archivos json es que puedo simplemente leerlos desde el archivo que carga
     la pagina y cargar todo, haciendo innecesarios los archivos "common" y "all", tambien los JSON son mas faciles de editar para 
     personas externas a mi, tengo 40 minutos para trabajar en esto antes de que empiece la clase de termodinamica. (11:13am)
+    * Documente por fin el archivo "bezier.py", que unicamente contiene la clase Bezier. 
+    * El archivo "color" y "utils" han sido fusionados. (11:40am)
+    * Documente tambien el archivo "utils". (11:57am)
+    * Hubo algunas optimizaciones al archivo "main", ya que tenia muchos que cambios que habia dejado atras con el tiempo y tuve que
+    eliminarlos, como por ejemplo la barra de abajo con mi nombre y actualizaciones, esto ya no es necesario ya que mi nombre aparece
+    en la pantalla principal y las actualizaciones ya no son parte principal de MAFER por el momento, ya que no se me ocurre alguna
+    utilidad, realmente esta barra solo estaba para copiar a VSCODE. (12:04pm)
